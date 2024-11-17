@@ -11,10 +11,6 @@ contract ValetAccess {
 
     mapping(address => Access) public accessList;
 
-    // Event definitions
-    event AccessGranted(address indexed valet, uint256 expiryTime);
-    event AccessRevoked(address indexed valet);
-
     constructor() {
         owner = msg.sender;
     }
@@ -27,11 +23,8 @@ contract ValetAccess {
     // Grant access to a valet for a certain duration (in seconds)
     function grantAccess(address valet, uint256 duration) external onlyOwner {
         require(duration > 0, "Duration should be greater than 0");
-
         accessList[valet].expiryTime = block.timestamp + duration;
         accessList[valet].hasAccess = true;
-
-        emit AccessGranted(valet, accessList[valet].expiryTime); // Emit event
     }
 
     // Check if the valet has access
@@ -45,7 +38,5 @@ contract ValetAccess {
     // Revoke access immediately
     function revokeAccess(address valet) external onlyOwner {
         accessList[valet].hasAccess = false;
-
-        emit AccessRevoked(valet); // Emit event
     }
 }

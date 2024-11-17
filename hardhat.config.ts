@@ -2,7 +2,7 @@ require('@nomiclabs/hardhat-ethers');
 
 
 module.exports = {
-  solidity: "0.8.17", // Adjust this if you're using a different Solidity version
+  solidity: "0.8.19", // Adjust this if you're using a different Solidity version
   networks: {
     sepolia: {
       url: `https://sepolia.infura.io/v3/410b3c85627e4eb5b423a4150a06e9bc`,  // Use your Infura API URL
